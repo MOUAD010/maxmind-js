@@ -34,7 +34,7 @@ const Post = ({ post_id, since, until }) => {
 
       const pdf = new jsPDF("p", "mm", "a4");
       const imgWidth = 210;
-      const pageHeight = 297;
+      const pageHeight = 350;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
       let heightLeft = imgHeight;
       let position = 0;
@@ -84,23 +84,44 @@ const Post = ({ post_id, since, until }) => {
   }, [post_id, since, until]);
 
   return (
-    <div className="flex flex-col items-center justify-center mx-auto w-full ">
-      <button
+    <div className="flex flex-col items-center justify-center mx-auto w-full">
+      {/* <button
         onClick={handleDownloadPdf}
-        className=" flex justify-center items-center gap-2 bg-green-700 p-2 rounded-lg text-white hover:bg-green-900"
+        className="flex justify-center items-center gap-2 bg-green-700 p-2 rounded-lg text-white hover:bg-green-900"
       >
         <FaCloudDownloadAlt color="white" size={25} />
         Download as PDF
-      </button>
-      <div ref={componentRef}>
+      </button> */}
+      <div className="w-full">
         {isLoading ? (
           <Skeleton />
+        ) : posData.length === 0 ? (
+          <div>
+            <p className="text-black py-6">
+              No posts are available on this page between the provided dates.
+            </p>
+          </div>
         ) : (
-          posData.map((item) => (
-            <div key={item.id}>
-              <PostDisplay item={item} />
+          <div>
+            <div className=" flex justify-end">
+              {" "}
+              <button
+                onClick={handleDownloadPdf}
+                className="flex justify-end gap-2 bg-green-700 p-2 rounded-lg text-white hover:bg-green-900"
+              >
+                <FaCloudDownloadAlt color="white" size={25} />
+                Download as PDF
+              </button>
             </div>
-          ))
+            <div ref={componentRef}>
+              {" "}
+              {posData.map((item) => (
+                <div key={item.id}>
+                  <PostDisplay item={item} />
+                </div>
+              ))}
+            </div>
+          </div>
         )}
       </div>
     </div>

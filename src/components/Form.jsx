@@ -55,7 +55,9 @@ export default function Form() {
           <select
             {...register("Pages", { required: true })}
             className="w-full  px-4 mr-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            disabled={loading}
           >
+            <option value="">Select a page</option>
             {loading ? (
               <option>Loading...</option> // Show "Loading..." while fetching data
             ) : pages.length > 0 ? (
