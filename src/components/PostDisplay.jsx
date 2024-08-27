@@ -11,7 +11,7 @@ const PostDisplay = ({ item }) => {
         <img
           src={item.full_picture}
           alt="Info Card Image"
-          className="rounded-md object-fit w-[400px] h-[450px]"
+          className="rounded-md object-fit w-[400px] h-[450px] border-2 shadow-lg"
           // style={{ aspectRatio: "700/600", objectFit: "cover" }}
         />
         <div className="space-y-4">
