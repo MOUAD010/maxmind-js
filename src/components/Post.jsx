@@ -6,7 +6,7 @@ import { FaCloudDownloadAlt } from "react-icons/fa";
 import jsPDF from "jspdf";
 import Skeleton from "./Skeleton";
 
-const Post = ({ post_id, since, until }) => {
+const Post = ({ post_id, since, until, limit }) => {
   const componentRef = useRef(null);
 
   const handleDownloadPdf = async () => {
@@ -58,7 +58,7 @@ const Post = ({ post_id, since, until }) => {
 
   useEffect(() => {
     const payload = {
-      limit: "10",
+      limit: limit,
       offset: "0",
       since: since,
       until: until,
@@ -81,7 +81,7 @@ const Post = ({ post_id, since, until }) => {
     };
 
     getDataPosts();
-  }, [post_id, since, until]);
+  }, [post_id, since, until, limit]);
 
   return (
     <div className="flex flex-col items-center justify-center mx-auto w-full">

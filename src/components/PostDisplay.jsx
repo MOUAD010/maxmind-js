@@ -11,7 +11,7 @@ const PostDisplay = ({ item }) => {
         <img
           src={item.full_picture}
           alt="Info Card Image"
-          className="rounded-md object-fit w-[400px] h-[450px] border-2 shadow-lg"
+          className="rounded-md object-fit w-[400px] h-[400px] border-2 shadow-lg"
           // style={{ aspectRatio: "700/600", objectFit: "cover" }}
         />
         <div className="space-y-4">
@@ -25,17 +25,24 @@ const PostDisplay = ({ item }) => {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            {/* <UsersIcon className="w-6 h-6 text-primary" /> */}
             <VscReactions className="w-6 h-6 text-primary" />
             <span className="text-primary font-medium">
-              {item.reactions.data && <div>No reactions</div>}
+              {item.reactions.summary.total_count ? (
+                item.reactions.summary.total_count
+              ) : (
+                <div>No reactions</div>
+              )}
             </span>
           </div>
+
           <div className="flex items-center gap-4">
-            {/* <UsersIcon className="w-6 h-6 text-primary" /> */}
             <LiaComments className="w-6 h-6 text-primary" />
             <span className="text-primary font-medium">
-              {item.comments.data && <div>No comments</div>}
+              {item.comments.summary.total_count ? (
+                item.comments.summary.total_count
+              ) : (
+                <div>No comments</div>
+              )}
             </span>
           </div>
         </div>
